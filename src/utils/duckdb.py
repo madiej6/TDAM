@@ -3,7 +3,8 @@ import os
 
 DAMAGE_INDICATORS_PATH = os.path.join(os.getcwd(), 'tables', 'damage_indicators.csv')
 DAMAGE_MAPPINGS_PATH = os.path.join(os.getcwd(), 'tables', 'damage_mappings.csv')
-
+DB_PATH = os.path.join(os.getcwd(), 'data', 'tdam.db')
+                       
 def spatial_extension(conn: duckdb.DuckDBPyConnection):
     """Install spatial extension if needed.
     
@@ -28,7 +29,7 @@ def spatial_extension(conn: duckdb.DuckDBPyConnection):
 
 
 def initialize(rebuild_tables: bool = False):
-    conn = duckdb.connect('tdam.db')
+    conn = duckdb.connect(DB_PATH)
     create_tables(conn, rebuild_tables)
     return conn
 
