@@ -10,7 +10,7 @@
 **Damage Assessment Model**: Given a tornado path polygon with EF ratings, and structures categorized into damage indicators, generate predicted damages at the structure level.
     - Not started
     - Planned Completion: Fall 2025  
-    
+
 **Tornado Path Generator**: Generate a tornado path polygon with EF ratings from points (i.e. field surveys).
     - Not started
     - Planned Completion: End of 2025
@@ -34,7 +34,7 @@ For example, with conda:
 
 The Tornado Damage Assessment Model works as follows:
 
-1. Classify Structures
+### Classify Structures
 The TDAM damage predictions are highly dependent on the structure classifications. Each structure needs to be mapped to a Damage Indicator. You will provide the file path of your structure data and run the classifier like this:
 
 ```
@@ -60,7 +60,7 @@ For example, the Classifier will create a table like this:
 | Church  |       |
 | Office Building  |         |
 
-And then you will populate the DamageIndicator column using your best judgment, as such:
+And then you will manually populate the DamageIndicator column using your best judgment, as such:
 
 | Type   | DamageIndicator       |
 |------|------------|
@@ -71,12 +71,15 @@ And then you will populate the DamageIndicator column using your best judgment, 
 
 Once you've mapped all of your Structure Types to a Damage Indicator, save the csv file and run the validator (next step).
 
-2. Validate Mappings
-
+### Validate Mappings
+The Validator will check to make sure that all of the DamageIndicators you assigned to the structures are valid and exist in the `damage_indicators.csv`. If you have assigned a structure type to an invalid Damage Indicator, the validator will fail with an error message that tells you which invalid entries it found.
 
 ```
 python src/main.py --validate-mappings --id <project-id>
 ```
+i.e.
+```
+python src/main.py --validate-mappings --id test
+```
 
-3. Predict Damages
 
