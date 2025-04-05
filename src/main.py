@@ -1,5 +1,5 @@
 import argparse
-from classify import classify_buildings
+from classify import classify_structures
 from validate import validate_mappings
 from utils.duckdb import initialize
 
@@ -14,10 +14,10 @@ if __name__ == "__main__":
 
     group = parser.add_mutually_exclusive_group(required=True)
 
-    group.add_argument('--classify-buildings',
-                       dest='buildings_path',
+    group.add_argument('--classify-structures',
+                       dest='structures_path',
                        type=str,
-                       help='Path to the buildings dataset to classify.')
+                       help='Path to the structures dataset to classify.')
     
     group.add_argument('--validate-mappings', 
                        dest='validate',
@@ -38,19 +38,19 @@ if __name__ == "__main__":
 
     tdam_id = args.id
     validate = args.validate
-    buildings_path = args.buildings_path
+    structures_path = args.structures_path
     type_col = args.type_col
     rebuild = args.rebuild
 
     if rebuild:
         initialize(rebuild)
 
-    if buildings_path and not type_col:
-        parser.error("--type-col is required when using --classify-buildings.")
+    if structures_path and not type_col:
+        parser.error("--type-col is required when using --classify-structures.")
 
 
-    if buildings_path:
-        classify_buildings(buildings_path, type_col, tdam_id)
+    if structures_path:
+        classify_structures(structures_path, type_col, tdam_id)
 
     if validate:
         validate_mappings(tdam_id)

@@ -1,5 +1,3 @@
-
-
 import os
 from utils.duckdb import initialize
 from utils.logging import get_logger

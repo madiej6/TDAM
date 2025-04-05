@@ -21,7 +21,48 @@
 The Tornado Damage Assessment Model works as follows:
 
 1. Classify Structures
-The TDAM damage predictions are highly dependent on the structure classifications. Each structure needs to be mapped to a Damage Indicator. 
+The TDAM damage predictions are highly dependent on the structure classifications. Each structure needs to be mapped to a Damage Indicator. You will provide the file path of your structure data and run the classifier like this:
 
-2. Predict Damages
+```
+python src/main.py --classify-structures <file-path> --type-col <type-col> --id <project-id>
+```
+
+i.e.
+```
+python src/main.py --classify-structures data/dummy_bldgs.shp --type-col Type --id test
+```
+Where:
+- `<file-path>` is the path to your structures. This can be a point or polygon shapefile.
+- `<type-col>` is the column of your structure data that contains information about structure type, land use, construction, etc. It's the primary column that you'll use to map your structures to the Damage Indicators.
+- `<project-id>` is the unique identifier of your project. This ID will be used in file naming and general organization of output files.
+
+A table gets created in `tables/` named: `structural_mappings_{id}.csv` that contains all of the unique structure types from the structural dataset. Each one of the structure types needs to be manually mapped to a Damage Indicator. Before proceeding on to the next step, you must map each of the structure types to a Damage Indicator. The Damage Indicators can be found in `tables/camage_indicators.csv` and you should use the column named 'ABBREVIATIONS'.
+
+For example, the Classifier will create a table like this:
+| Type   | DamageIndicator       |
+|------|------------|
+| Cabin  |       |
+| Single-Family Residence  |         |
+| Church  |       |
+| Office Building  |         |
+
+And then you will populate the DamageIndicator column using your best judgment, as such:
+
+| Type   | DamageIndicator       |
+|------|------------|
+| Cabin  |  SBO     |
+| Single-Family Residence  |    FR12     |
+| Church  |   LRB    |
+| Office Building  |    SPB     |
+
+Once you've mapped all of your Structure Types to a Damage Indicator, save the csv file and run the validator (next step).
+
+2. Validate Mappings
+
+
+```
+python src/main.py --validate-mappings --id <project-id>
+```
+
+3. Predict Damages
 
