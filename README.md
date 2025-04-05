@@ -3,17 +3,17 @@
 
 ## Roadmap
 
-**Structure Classifier**: Provide a geospatial dataset (points or polygons) of structures or parcels with a "Structure Category" column, generate a classifier to categorioze the structures into NWS Damage Indicators.
-    - In Progress
-    - Planned Completion: Summer 2025  
+**Structure Classifier**: Provide a geospatial dataset (points or polygons) of structures or parcels with a "Structure Category" column, generate a classifier to categorioze the structures into NWS Damage Indicators.  
+- In Progress
+- Planned Completion: Summer 2025  
 
-**Damage Assessment Model**: Given a tornado path polygon with EF ratings, and structures categorized into damage indicators, generate predicted damages at the structure level.
-    - Not started
-    - Planned Completion: Fall 2025  
+**Damage Assessment Model**: Given a tornado path polygon with EF ratings, and structures categorized into damage indicators, generate predicted damages at the structure level.  
+- Not started
+- Planned Completion: Fall 2025  
 
-**Tornado Path Generator**: Generate a tornado path polygon with EF ratings from points (i.e. field surveys).
-    - Not started
-    - Planned Completion: End of 2025
+**Tornado Path Generator**: Generate a tornado path polygon with EF ratings from points (i.e. field surveys).  
+- Not started
+- Planned Completion: End of 2025
 
 
 ## Resources
